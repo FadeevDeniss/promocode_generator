@@ -10,7 +10,7 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument('amount', nargs='+', type=int)
-        parser.add_argument('group', type=str)
+        parser.add_argument('group', nargs='+', type=str)
 
     def handle(self, *args, **options):
         amount, group = options['amount'][0], options['group']
@@ -26,6 +26,6 @@ class Command(BaseCommand):
                 code.code = (random_string + code_id)[-12:]
                 code.save()
 
-                json_serializer.serialize(PromoCode.objects.filter(id=code_id), fields=('code', 'group'), stream=out)
+                json_serializer.serialize(PromoCode.objects.filter(id=code.id), fields='code', stream=out)
 
         self.stdout.write(self.style.SUCCESS(f"Successfully create {amount} promocodes for {group} group"))
