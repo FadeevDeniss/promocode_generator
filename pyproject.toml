@@ -5,8 +5,9 @@ description = ""
 authors = ["Your Name <you@example.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.8"
 Django = "^4.0.4"
+"backports.zoneinfo" = "^0.2.1"
 
 [tool.poetry.dev-dependencies]
 
